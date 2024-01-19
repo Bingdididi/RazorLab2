@@ -1,0 +1,43 @@
+﻿@page
+@using System.Diagnostics
+@model MyApp.Namespace.ImagePageModel
+@{
+    ViewData["Title"] = "ImagePage";
+}
+
+<h2>Enter a keyword to generate an image:</h2>
+
+<form method="post">
+    <div>
+        <label asp-for="ImagePrompt"></label>
+        <input asp-for="ImagePrompt" />
+        <span asp-validation-for="ImagePrompt" class="text-danger"></span>
+    </div>
+    <button type="submit">Generate</button>
+</form>
+
+@if (Model.ImageUrl != null)
+{
+    <div class="image-container">
+        <img src="@Model.ImageUrl" alt="Generated Image" />
+    </div>
+}
+
+@section Styles {
+    <style>
+        .image-container {
+            width: 300px; /* Adjust as needed */
+            height: 300px; /* Adjust as needed */
+            border: 5px solid black; /* This creates a big square border */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-container img {
+            display: block; /* Removes bottom space under image */
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+}
